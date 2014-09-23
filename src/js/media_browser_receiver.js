@@ -74,7 +74,9 @@ function getCodecLimits() {
         maxVideoLevel: 50,
         maxWidth: 1920,
         maxHeight: 1080,
-        maxSampleRate: 48000
+        maxSampleRate: 48000,
+		maxRefFrames: 4,
+		maxVideoBitDepth: 8
 
     };
 }
@@ -224,11 +226,11 @@ function canDirectStream(mediaType, mediaSource, maxBitrate) {
             return false;
         }
 
-        if (videoStream.BitDepth && videoStream.BitDepth > 8) {
+        if (videoStream.BitDepth && videoStream.BitDepth > codecLimits.maxVideoBitDepth) {
             return false;
         }
 
-        if (videoStream.RefFrames && videoStream.RefFrames > 4) {
+        if (videoStream.RefFrames && videoStream.RefFrames > codecLimits.maxRefFrames) {
             return false;
         }
 
@@ -432,8 +434,8 @@ function getStreamUrl(serverAddress, deviceId, mediaType, itemId, mediaSourceInf
             url += '&static=true';
 
         } else {
-
-            url += '&maxaudiochannels=' + codecLimits.maxAudioChannels;
+           
+			url += '&maxaudiochannels=' + codecLimits.maxAudioChannels;
 
             if (startPositionTicks) {
                 url += '&startTimeTicks=' + startPositionTicks.toString();
@@ -444,6 +446,7 @@ function getStreamUrl(serverAddress, deviceId, mediaType, itemId, mediaSourceInf
             }
 
             url += '&deviceId=' + deviceId;
+			url += '&ClientTime=' + new Date().getTime();
         }
 
         return url;
@@ -473,11 +476,15 @@ function getStreamUrl(serverAddress, deviceId, mediaType, itemId, mediaSourceInf
         url += '&maxwidth=' + codecLimits.maxWidth;
         url += '&maxheight=' + codecLimits.maxHeight;
 
+        url += '&maxRefFrames=' + codecLimits.maxRefFrames;
+        url += '&maxVideoBitDepth=' + codecLimits.maxVideoBitDepth;
+
         url += '&videoCodec=h264';
         url += '&audioCodec=aac';
 
         url += '&mediasourceid=' + mediaSourceInfo.mediaSource.Id;
         url += '&deviceId=' + deviceId;
+		url += '&ClientTime=' + new Date().getTime();
 
         return url;
     }
