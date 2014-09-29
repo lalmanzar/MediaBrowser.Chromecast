@@ -265,7 +265,7 @@ function canPlayAudioStreamDirect(audioStream, isVideo) {
 
     var bitrate = audioStream.BitRate;
     if(isVideo && audioCodec.indexOf('aac') != -1) {
-    	bitrate = bitrate ?? 0;
+    	bitrate = bitrate || 0;
     }
     if (!bitrate) {
         return false;
