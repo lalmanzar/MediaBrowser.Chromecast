@@ -1722,7 +1722,7 @@ module.controller('MainCtrl', function ($scope, $interval, $timeout, $q, $http, 
                 track.mode = "showing";
 
                 data.TrackEvents.forEach(function (trackEvent) {
-                    track.addCue(new TextTrackCue(trackEvent.StartPositionTicks / 10000000, trackEvent.EndPositionTicks / 10000000, trackEvent.Text.replace(/\\N/gi,'\n')));
+                    track.addCue(new VTTCue(trackEvent.StartPositionTicks / 10000000, trackEvent.EndPositionTicks / 10000000, trackEvent.Text.replace(/\\N/gi,'\n')));
                 });
             });
         }
