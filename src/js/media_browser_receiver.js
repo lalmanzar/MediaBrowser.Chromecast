@@ -1676,7 +1676,7 @@ module.controller('MainCtrl', function ($scope, $interval, $timeout, $q, $http, 
 
         var requestUrl = getUrl(item.serverAddress, 'Users/' + item.userId + '/Items/' + item.Id);
 
-        return $http.get(requestUrl, {},
+        return $http.get(requestUrl,
           {
               headers: getSecurityHeaders($scope.accessToken, $scope.userId)
 			  
