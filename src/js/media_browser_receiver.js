@@ -1474,6 +1474,7 @@ module.controller('MainCtrl', function ($scope, $interval, $timeout, $q, $http, 
 
         data.options = data.options || {};
         window.deviceInfo.deviceName = data.receiverName || window.deviceInfo.deviceName;
+        window.deviceInfo.deviceId = data.receiverName || window.deviceInfo.deviceId;
         window.playOptions.maxBitrate = Math.min(data.maxBitrate || window.playOptions.maxBitrate, 10000000);
 
         // Items will have properties - Id, Name, Type, MediaType, IsFolder
@@ -1675,7 +1676,11 @@ module.controller('MainCtrl', function ($scope, $interval, $timeout, $q, $http, 
 
         var requestUrl = getUrl(item.serverAddress, 'Users/' + item.userId + '/Items/' + item.Id);
 
-        return $http.get(requestUrl).success(function (data) {
+        return $http.get(requestUrl, {},
+          {
+              headers: getSecurityHeaders($scope.accessToken, $scope.userId)
+			  
+          }).success(function (data) {
 
             // Attach the custom properties we created like userId, serverAddress, itemId, etc
             angular.extend(data, item);
