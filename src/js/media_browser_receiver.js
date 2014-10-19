@@ -483,6 +483,12 @@ function getStreamUrl(serverAddress, deviceId, mediaType, itemId, mediaSourceInf
         url += '&audioCodec=aac';
 
         url += '&mediasourceid=' + mediaSourceInfo.mediaSource.Id;
+		
+		var subtitleStream = mediaSourceInfo.mediaSource.subtitleStream;
+		if (subtitleStream && !subtitleStream.IsTextSubtitleStream) {
+			url += '&subtitleStreamIndex=' + subtitleStream.Index;
+		}
+	
         url += '&deviceId=' + deviceId;
 		url += '&ClientTime=' + new Date().getTime();
 
