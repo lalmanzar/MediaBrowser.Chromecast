@@ -222,7 +222,11 @@ function canDirectStream(mediaType, mediaSource, maxBitrate) {
             return false;
         }
 
-        if (videoStream.IsAnamorphic) {
+        if (videoStream.IsCabac != null && !videoStream.IsCabac) {
+            return false;
+        }
+
+		if (videoStream.IsAnamorphic) {
             return false;
         }
 
