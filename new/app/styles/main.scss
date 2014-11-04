@@ -1,0 +1,72 @@
+body {
+  font-family: 'Roboto', 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  color: #ddd;
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+#waiting-container-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background: #000 no-repeat center;
+}
+#waiting-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 15, 15, .82);
+  padding: 18px 32px;
+
+  h1 {
+    font-size: 60px;
+    font-weight: 300;
+    margin: 25px 0;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: 300;
+    margin: 25px 0;
+  }
+
+  .waitingContent {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    height: 415px;
+    margin-top: -207px;
+    text-align: center;
+
+    .logo {
+      height: 200px;
+      margin: 0 auto;
+      width: auto;
+      display: block;
+    }
+  }
+
+  .timeOfDay {
+    position: absolute;
+    top: 35px;
+    right: 45px;
+    color: #fff;
+    font-size: 24px;
+  }
+
+  .version-number {
+    position: absolute;
+    right: 32px;
+    bottom: 5px;
+    color: #ccc;
+  }
+}
